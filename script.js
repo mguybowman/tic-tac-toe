@@ -137,16 +137,6 @@ function announceWinner(marker) {
 }
 
 function evaluateBoard() {
-    let filledSquares = 0
-    for (let i = 0; i < 9; i++) {
-        if (gameBoard[i]["marker"] !== "") {
-            filledSquares += 1
-        }
-    }
-    if (filledSquares === 9) {
-        announceWinner()
-        return
-    }
     for (let i = 0; i < 9; i += 3) {
         if (gameBoard[i]["marker"] !== "") {
             if (
@@ -158,6 +148,7 @@ function evaluateBoard() {
                 strike.id = "strike"
                 strike.className = "h" + i
                 board.appendChild(strike)
+                return
             }
         }
     }
@@ -172,6 +163,7 @@ function evaluateBoard() {
                 strike.id = "strike"
                 strike.className = "v" + i
                 board.appendChild(strike)
+                return
             }
         }        
     }
@@ -185,6 +177,7 @@ function evaluateBoard() {
             strike.id = "strike"
             strike.className = "dccw"
             board.appendChild(strike)
+            return
         } else if (
             gameBoard[4]["marker"] === gameBoard[2]["marker"] &&
             gameBoard[4]["marker"] === gameBoard[6]["marker"]
@@ -194,6 +187,17 @@ function evaluateBoard() {
             strike.id = "strike"
             strike.className = "dcw"
             board.appendChild(strike)
+            return
         }
+    }
+    let filledSquares = 0
+    for (let i = 0; i < 9; i++) {
+        if (gameBoard[i]["marker"] !== "") {
+            filledSquares += 1
+        }
+    }
+    if (filledSquares === 9) {
+        announceWinner()
+        return
     }
 }
