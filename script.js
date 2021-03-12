@@ -125,8 +125,10 @@ function announceWinner(marker) {
     let p = document.createElement("p")
     if (marker === "X") {
         p.innerHTML = players[0]["name"] + " wins!"
-    } else {
+    } else if (marker === "O") {
         p.innerHTML = players[1]["name"] + " wins!"
+    } else {
+        p.innerHTML = "Draw"
     }
     menu.appendChild(p)
     nowPlaying = false
@@ -135,6 +137,16 @@ function announceWinner(marker) {
 }
 
 function evaluateBoard() {
+    let filledSquares = 0
+    for (let i = 0; i < 9; i++) {
+        if (gameBoard[i]["marker"] !== "") {
+            filledSquares += 1
+        }
+    }
+    if (filledSquares === 9) {
+        announceWinner()
+        return
+    }
     for (let i = 0; i < 9; i += 3) {
         if (gameBoard[i]["marker"] !== "") {
             if (
