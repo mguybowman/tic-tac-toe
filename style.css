@@ -1,0 +1,149 @@
+:root {
+    --max-width: 600px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 320px;
+}
+
+main {
+    max-width: var(--max-width);
+    padding: 20px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin: 0 0 16px 0;
+}
+
+#board {
+    background-color: black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2.5%;
+    width: calc(100vw - 40px);
+    height: calc(100vw - 40px);
+    min-width: 280px;
+    min-height: 280px;
+    position: relative;
+}
+
+.square {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.marker-x {
+    background-color: black;
+    height: 100%;
+    width: 8%;
+    transform: rotate(45deg);
+}
+
+.marker-x::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    transform: rotate(90deg);
+}
+
+.marker-o {
+    height: 77%;
+    width: 77%;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.marker-o::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 19%;
+    height: 62%;
+    left: 19%;
+    width: 62%;
+    background-color: white;
+    border-radius: 50%;
+}
+
+#menu {
+    text-align: center;
+    margin: 1em auto 0 auto;
+}
+
+#menu button {
+    font-size: 1em;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: .5em 1em;
+}
+
+#menu button:hover {
+    background-color: black;
+    color: white;
+}
+
+#menu label, #menu input {
+    display: block;
+}
+
+#menu input {
+    margin: 1em auto;
+    max-width: 280px;
+}
+
+#menu p {
+    font-size: 1.5em;
+}
+
+#strike {
+    display: block;
+    position: absolute;
+    background-color: red;
+}
+
+.h0, .h3, .h6 {
+    width: 100%;
+    height: 2.5%;
+}
+
+.h0 {top: 14.5%}
+.h3 {top: 48.75%}
+.h6 {bottom: 14.5%}
+
+.v0, .v1, .v2 {
+    height: 100%;
+    width: 2.5%;
+}
+
+.v0 {left: 14.5%}
+.v1 {left: 48.75%}
+.v2 {right: 14.5%}
+
+.dcw, .dccw {
+    left: 48.75%;
+    top: -15%;
+    height: 130%;
+    width: 2.5%;
+}
+
+.dccw {transform: rotate(-45deg);}
+.dcw {transform: rotate(45deg);}
+
+@media screen and (min-width: 640px) {
+    #board {
+        width: var(--max-width);
+        height: var(--max-width);
+    }
+}
